@@ -1,46 +1,39 @@
+import React from 'react';
 import styles from '../ContactForm/ContactForm.module.css';
-import { useDispatch, useSelector } from 'react-redux';
-// import { nanoid } from 'nanoid';
-import { add } from 'redux/contacts-actions';
+import  {addUsers}  from '../../redux/itemsOperations';
 import { getContacts } from '../../redux/contacts-selectors';
+import {useAppDispatch, useAppSelector} from '../../customHooks'
 import { useState } from 'react';
 
-const ContactForm = () => {
-  const [name, setName] = useState('');
-  const [number, setNumber] = useState('');
-  const contacts = useSelector(getContacts);
-  const dispatch = useDispatch();
-
-  const handleChanger = ({ target: { name, value } }) => {
-    switch (name) {
-      case 'name':
-        setName(value);
-        break;
-      case 'number':
-        setNumber(value);
-        break;
-      default:
-        return;
-    }
-  };
-
-  const formSubmit = event => {
+export const ContactForm = () => {
+  const [nameItem, setNameItem] = useState<string>('');
+  const [number, setNumber] = useState<string>('');
+  const contacts = useAppSelector(getContacts);
+  const dispatch = useAppDispatch();
+  
+  const formSubmit = (event: { preventDefault: () => void }) => {
     event.preventDefault();
     const isContactExist = contacts.some(
-      item => item.name.toLowerCase() === name.toLowerCase()
+      ({ name }: { name: string }) => nameItem === name
     );
     if (isContactExist) {
-      alert(`${isContactExist.name} is already in contact`);
+      alert(`Name is already in contact`);
       return;
     }
-    const contact = { name, number };
-    dispatch(add(contact));
-    reset();
-  };
-  function reset() {
-    setName('');
+    const contact = { name: nameItem, number };
+    dispatch(addUsers(contact));
+    setNameItem('');
     setNumber('');
-  }
+  };
+  const handleChanger = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = event.target;
+    if (name === 'name') {
+      setNameItem(value);
+    } else if (name === 'phone') {
+      setNumber(value);
+    }
+  };
+
 
   return (
     <>
@@ -53,7 +46,7 @@ const ContactForm = () => {
             pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
             title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
             required
-            value={name}
+            value={nameItem}
             onChange={handleChanger}
             placeholder="Name"
           />

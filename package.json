@@ -1,25 +1,26 @@
 {
-  "name": "goit-react-hw-07-phonebook",
+  "name": "react-homework-template",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://YehorBoichenko.github.io/goit-react-hw-07-phonebook/",
+  "homepage": "https://RedokLeeroy.github.io/RedokLeeroy-goit-react-hw-07-phonebook/",
   "dependencies": {
     "@reduxjs/toolkit": "^1.8.3",
     "@testing-library/jest-dom": "^5.16.3",
     "@testing-library/react": "^12.1.4",
     "@testing-library/user-event": "^13.5.0",
+    "@types/css-modules": "^1.0.2",
+    "@types/node": "^18.8.0",
+    "@types/react": "^18.0.21",
+    "@types/react-dom": "^18.0.6",
     "axios": "^0.27.2",
     "nanoid": "^4.0.0",
     "prop-types": "^15.8.1",
     "react": "^18.1.0",
-    "react-devtools": "^4.25.0",
     "react-dom": "^18.1.0",
     "react-redux": "^8.0.2",
     "react-scripts": "5.0.1",
-    "redux": "^4.2.0",
-    "redux-devtools-extension": "^2.13.9",
-    "redux-logger": "^3.0.6",
     "redux-persist": "^6.0.0",
+    "typescript": "^4.8.4",
     "web-vitals": "^2.1.3"
   },
   "scripts": {
@@ -27,7 +28,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "lint:js": "eslint src/**/*.{js,jsx}"
+    "lint:js": "eslint src/**/*.{ts,tsx}"
   },
   "eslintConfig": {
     "extends": [
